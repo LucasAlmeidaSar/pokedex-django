@@ -1,6 +1,6 @@
 import requests
 
-def getPokemon(url_pokemon):
+def get_pokemon(url_pokemon : str) -> dict:
     response = requests.get(url_pokemon)
     pokemon = response.json()
     img = f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{pokemon['id']}.png"
@@ -15,7 +15,7 @@ def getPokemon(url_pokemon):
 
 
 
-def getAllPokemons(amount_pokemons):
+def get_all_pokemons(amount_pokemons : int) -> list:
     contador = 0
     limit = amount_pokemons
     url = f"https://pokeapi.co/api/v2/pokemon/?limit={limit}"
@@ -32,69 +32,62 @@ def getAllPokemons(amount_pokemons):
 
 
 
-def termo_verify(pokemon, term, array):
+def termo_verify(pokemon:dict, term:str, array:list):
     if pokemon['name'].find(term) != -1 or pokemon['id'].find(term) != -1:
       array.append(pokemon)
 
 
-def getPokemonSpecie(url):
-  response = requests.get(url)
+def get_pokemon_specie(url_specie:str) -> dict:
+  response = requests.get(url_specie)
   specie = response.json()
   return specie
 
-def getPokemonDescription(array):
+def get_pokemon_description(array:list) -> str:
   for item in array:
     if item['language']['name'] == 'en':
-      string = item['flavor_text']
+      description = item['flavor_text']
       break
 
-  string = string.replace('\n', ' ')
-  string = string.replace('\f', ' ')
-  string = string.replace('POKéMON', 'pokemon') 
-  return string
+  description = description.replace('\n', ' ')
+  description = description.replace('\f', ' ')
+  description = description.replace('POKéMON', 'pokemon') 
+  return description
 
-def getPokemonHabitat(specie):
+def get_pokemon_habitat(specie:dict) -> str:
   habitat = 'Uninformed' if not specie['habitat'] else specie['habitat']['name'].capitalize()
   return habitat
 
-def getPokemonGrowthRate(specie):
+def get_pokemon_growth_rate(specie:dict) -> str:
   growth_rate = 'Uninformed' if not specie['growth_rate'] else specie['growth_rate']['name'].capitalize()
   return growth_rate
 
-def getPokemonShape(specie):
+def get_pokemon_shape(specie:dict) -> str:
   shape = 'Uninformed' if not specie['shape'] else specie['shape']['name'].capitalize()
   return shape
 
 
-def getPokemonType(url, item):
-  # Fazendo o get da url
+def get_pokemon_type(url:str) -> dict:
   response = requests.get(url)
-
-  # Transoformando a resposta em JSON e armazenando na variável type
   type = response.json()
 
-  # Criando a variável que receberá o array com os objetos para varrer.
-  array_weakness = type['damage_relations'][item]
+  weakness = type['damage_relations']['double_damage_from'] 
+  strenghts = type['damage_relations']['double_damage_to'] 
 
-  # Criando a variável final que terá a lista somente com os nomes das fraquezas 
-  list = getPokemonWeakness(array_weakness)
+  list_weakness = get_pokemon_weakness_or_strenghts(weakness)
+  list_strenghts = get_pokemon_weakness_or_strenghts(strenghts)
 
-  # Adicionando um item na variável Type com a lista das fraquezas
-  type['list'] = list
- 
-  # Retorno o type para ser usado na minha página.
+  type['list_weakness'] = list_weakness
+  type['list_strenghts'] = list_strenghts
+
   return type
 
 
 
-def getPokemonWeakness(array):
-  # Criando um array vazio para preencher com os nomes das fraquezas
-  all_weakness = []
+def get_pokemon_weakness_or_strenghts(list:list) -> list:
+  list_items = []
 
-  # Passando por cada item do array, recolhendo os nomes e adicionando a lista vazia
-  for item in array:
-    all_weakness.append(item['name'])
+  for item in list:
+    list_items.append(item['name'])
    
-  # retorno a lista com os nomes após preenchê-la
-  return all_weakness
+  return list_items
   

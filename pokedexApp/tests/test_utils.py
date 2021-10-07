@@ -1,34 +1,34 @@
 from pokedexApp.utils import *
 
-def test_getPokemon_returns_dict(url_pokemon):
+def test_get_pokemon_returns_dict(url_pokemon):
   pass
 
-def test_getPokemon_contains_all_attributes(url_pokemon):
+def test_get_pokemon_contains_all_attributes(url_pokemon):
   pass
 
-def test_getAllPokemons_returns_list():
+def test_get_all_pokemons_returns_list():
   pass
 
-def test_getAllPokemons_return_correct_amount():
+def test_get_all_pokemons_return_correct_amount():
   pass
 
-def test_getAllPokemons_returns_max_898_pokemons():
+def test_get_all_pokemons_returns_max_898_pokemons():
   pass
 
-def test_getPokemonSpecie_returns_dict():
+def test_get_pokemon_specie_returns_dict():
   pass
 
-def test_getPokemonDescription_returns_string():
+def test_get_pokemon_description_returns_string():
   pass
 
-def test_getPokemonHabitat_returns_string():
+def test_get_pokemon_habitat_returns_string():
   pass
 
-def test_getPokemonHabitat_returns_uninformed_if_not_habitat():
+def test_get_pokemon_habitat_returns_uninformed_if_not_habitat():
   pass
 
-def test_getPokemonType_returns_dict():
+def test_get_pokemon_type_returns_dict():
   pass
 
-def test_getPokemonWeaknessOrStrenghs_returns_list():
+def test_get_pokemon_weakness_or_strenghts_returns_list():
   pass
