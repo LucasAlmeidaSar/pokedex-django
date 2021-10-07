@@ -1,0 +1,78 @@
+{% load static %}
+
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <title>My Pokemon!</title>
+</head>
+<body>
+
+    <div class="container">
+
+    
+      <form class="" action="{% url 'pg_busca' %}">
+        <div class="filter-container">
+          <input type="search"
+                  class="filter"
+                  id="form-busca"
+                  name="termo"
+                  value="{{ request.GET.termo }}"
+                  placeholder="Type pokemon's name or number"
+                  autofocus/>
+         <p class="results-found">{{pokemonsList.paginator.count}} pokemons found.</p>   
+        </div>
+        
+    </form>
+
+
+    <ul class="pokemons-grid">
+       {% if pokemons %}
+        {% for pokemon in pokemons %}
+        <a href="{% url 'pg_pokemon' %}?pokemonID={{pokemon.id}}"> 
+          <li class="card {{ pokemon.types.0.type.name }}">        
+            <p class="card-number">N° {{ pokemon.id }}</p>              
+            <img class="card-image" src="{{ pokemon.img }}" alt="{{ pokemon.name }}">
+            <h2 class="card-title">{{ pokemon.name }} </h2>
+            <p class="card-subtitle">
+              {{ pokemon.types_string }}
+            </p>  
+          </li>
+        </a> 
+        {% endfor %}
+
+       {% elif not pokemons %}
+        <h1 style="text-align: center; color: white;">Not found</h1>
+       {% endif %}
+    </ul>
+
+
+
+   {% if pokemonsList.paginator.count > 12 %}
+    <div class="pagination">
+      <span class="step-links">
+          {% if pokemonsList.has_previous %}
+              <a class="btn" href="?termo={{request.GET.termo}}&page=1">&laquo;</a>
+              <a class="btn" href="?termo={{request.GET.termo}}&page={{ pokemonsList.previous_page_number }}">&lsaquo;</a>
+          {% endif %}
+
+          <span class="current">
+              {{ pokemonsList.number }} de {{ pokemonsList.paginator.num_pages }}
+          </span>
+
+          {% if pokemonsList.has_next %}
+              <a class="btn" href="?termo={{request.GET.termo}}&page={{ pokemonsList.next_page_number }}">&rsaquo;</a>
+              <a class="btn" href="?termo={{request.GET.termo}}&page={{ pokemonsList.paginator.num_pages }}">&raquo;</a>
+          {% endif %}
+      </span>
+    </div>
+   {% endif %}
+
+  </div>
+
+</body>
+</html>

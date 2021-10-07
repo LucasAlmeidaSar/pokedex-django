@@ -1,0 +1,145 @@
+{% load static %}
+
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pokemon_info.css' %}">
+    <title>{{ pokemon.name|title }}</title>
+</head>
+<body>
+
+  <div class="container">
+
+    <form action="{% url 'pg_busca' %}">
+      <div class="filter-container">
+        <input type="search"
+                class="filter"
+                id="form-busca"
+                name="termo"
+                value="{{ request.GET.termo }}"
+                placeholder="Type pokemon's name or number"
+                autofocus/>
+      </div>
+    </form>    
+    
+    <div class="pokemon-container">      
+
+      <div class="flex">
+        <div>                        
+          <img class="pokemon-image" src="{{ pokemon.img }}" alt="{{ pokemon.name }}">
+        </div>
+  
+        <div>
+          <h1 class="pokemon-title">{{ pokemon.name|title }}</h1>
+          <p class="pokemon-description"> {{ pokemon.description }}</p>
+          <div class="pokemon-container-info">
+            <p> <b>Height:</b> <br> {{ pokemon.height_mts }} m</p>
+            <p> <b>Growth rate:</b> <br> {{ pokemon.growth_rate }} </p>
+            <p> <b>Weight:</b> <br> {{ pokemon.weight_kg}} kg</p>
+            <p> <b>Shape:</b> <br> {{ pokemon.shape }} </p>
+            <p> <b>Habitat:</b> <br> {{ pokemon.habitat }}</p>
+            
+            <ul>
+              <b>Abilities:</b>
+              {% for abilities in pokemon.abilities %}
+                <li>{{ abilities.ability.name|title }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+
+
+          <table>
+            <thead>
+              <tr>
+                {% for stats in pokemon.stats%}
+                  <th class="{{ pokemon.types.0.type.name }}">{{ stats.stat.name|title }}</th>
+                {% endfor %}                  
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {% for stats in pokemon.stats%}
+                  <td>{{ stats.base_stat }}</td>
+                {% endfor %}                
+              </tr>
+            </tbody>
+          </table>
+
+          <h2 class="pokemon-subtitle">Types</h2>
+          <ul class="pokemon-list flex">
+            {% for types in pokemon.types%}
+              <li class="pokemon-list-item {{ types.type.name }}">{{ types.type.name|title }}</li>
+            {% endfor %}
+          </ul>
+          
+        </div>
+      </div>
+
+      <div class="flex weak-strength-container">
+        <div>
+          <h2 class="pokemon-subtitle"> Weakness</h2>
+          <ul class="pokemon-list flex">
+            {% for weakness in pokemon.weakness_list %}
+              {% for item in weakness %}
+                <li class="pokemon-list-item {{item}}">{{item}}</li>
+              {% endfor %}
+            {% endfor %}
+          </ul>
+        </div>
+        <div>
+          <h2 class="pokemon-subtitle"> Strengths</h2>
+          <ul class="pokemon-list flex">
+            {% for strenght in pokemon.strenghts_list %}
+              {% for item in strenght %}
+                <li class="pokemon-list-item {{item}}">{{item}}</li>
+              {% endfor %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+
+      <h2 class="pokemon-title pokemon-evolutions-title">Evolutions</h2>
+      <div class="pokemon-evolutions flex">
+        <div class="pokemon-evolutions-card">
+          <img class="pokemon-evolutions-image" src="{{ pokemon.img }}" alt="">
+          <h1 class="pokemon-evolutions-info">N° {{ pokemon.id }} {{ pokemon.name }}</h1>  
+          <ul class="pokemon-evolutions-list flex">
+            <li class="pokemon-evolutions-list-item fire">Fire</li>
+            <li class="pokemon-evolutions-list-item water">Water</li>
+          </ul>  
+        </div>
+
+        <div class="pokemon-evolutions-card">
+          <img class="pokemon-evolutions-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png" alt="">
+          <h1 class="pokemon-evolutions-info">N° 2 {{ pokemon.name }}</h1>  
+          <ul class="pokemon-evolutions-list flex">
+            <li class="pokemon-evolutions-list-item fire">Fire</li>
+            <li class="pokemon-evolutions-list-item water">Water</li>
+          </ul>  
+        </div>
+
+        <div class="pokemon-evolutions-card">
+          <img class="pokemon-evolutions-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png" alt="">
+          <h1 class="pokemon-evolutions-info">N° 3 {{ pokemon.name }}</h1>  
+          <ul class="pokemon-evolutions-list flex">
+            <li class="pokemon-evolutions-list-item fire">Fire</li>
+            <li class="pokemon-evolutions-list-item water">Water</li>
+          </ul>  
+        </div>
+      </div>
+
+      <a class="btn" href="/">Voltar</a>
+
+                
+    </div> <!-- Fim Pokemon Container -->
+    
+
+  </div>
+</body>
+</html>
