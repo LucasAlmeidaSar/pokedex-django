@@ -3,17 +3,26 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, 
+      initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="description" 
+      content="Site de consumo da api de pokemons para exercício de conhecimentos.">
+    <meta name="keywords" content="pokemon, api, pokedex, pokeapi">
+    <meta name="author" content="Lucas de Almeida Sarmento">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pokemon_info.css' %}">  
     <link rel="shortcut icon" href="{% static 'img/pokeball.ico' %}">
-    {% block title %} {% endblock %}
-   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" 
+      rel="stylesheet">
+    {% block title %} {% endblock %}   
 </head>
 
 <body>
 
+  {% block container %}
   <div class="container">
 
     <form action="{% url 'pg_busca' %}">
@@ -33,7 +42,7 @@
     <ul class="pokemons-grid">
       {% if pokemons %}
         {% for pokemon in pokemons %}
-        <a href="{% url 'pg_pokemon' %}?pokemonID={{pokemon.id}}"> 
+        <a href="{% url 'pg_pokemon' %}?pokemon={{pokemon.name}}"> 
           <li class="card {{ pokemon.types.0.type.name }}">        
             <p class="card-number">N° {{ pokemon.id }}</p>              
             <img class="card-image" src="{{ pokemon.img }}" alt="{{ pokemon.name }}">
@@ -73,7 +82,8 @@
     </div>
    {% endif %}
 
-
   </div>
+  {% endblock %}
+
 </body>
 </html>

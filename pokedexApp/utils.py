@@ -1,40 +1,39 @@
 import requests
 
 def get_pokemon(url_pokemon : str) -> dict:
-    response = requests.get(url_pokemon)
-    pokemon = response.json()
-    img = f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{pokemon['id']}.png"
-    pokemon['img'] = img
-    types = [types['type']['name'].capitalize() for types in pokemon['types']]
-    pokemon['types_string'] = ' | '.join(types)
-    height = pokemon['height'] / 10
-    weight = pokemon['weight'] / 10
-    pokemon['height_mts'] = height
-    pokemon['weight_kg'] = weight
-    return pokemon
-
+  response = requests.get(url_pokemon)
+  pokemon = response.json()
+  img = f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{pokemon['id']}.png"
+  pokemon['img'] = img
+  types = [types['type']['name'].capitalize() for types in pokemon['types']]
+  pokemon['types_string'] = ' | '.join(types)
+  height = pokemon['height'] / 10
+  weight = pokemon['weight'] / 10
+  pokemon['height_mts'] = height
+  pokemon['weight_kg'] = weight
+  return pokemon
 
 
 def get_all_pokemons(amount_pokemons:int) -> list:
-    contador = 0
-    limit = amount_pokemons if amount_pokemons <= 898 else 898
-    url = f"https://pokeapi.co/api/v2/pokemon/?limit={limit}"
-    response = requests.get(url)
-    jsonObject = response.json()
-    pokemonsList = jsonObject['results']
-    for pokemon in pokemonsList:
-        contador += 1
-        img = f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{contador}.png"
-        pokemon['id'] = f"{contador}"
-        pokemon['img'] = img
+  counter = 0
+  limit = amount_pokemons if amount_pokemons <= 898 else 898
+  url = f"https://pokeapi.co/api/v2/pokemon/?limit={limit}"
+  response = requests.get(url)
+  jsonObject = response.json()
+  pokemonsList = jsonObject['results']
+  for pokemon in pokemonsList:
+    counter += 1
+    img = f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{counter}.png"
+    pokemon['id'] = f"{counter}"
+    pokemon['img'] = img
 
-    return pokemonsList
+  return pokemonsList
 
 
 
-def termo_verify(pokemon:dict, term:str, array:list):
-    if pokemon['name'].find(term) != -1 or pokemon['id'].find(term) != -1:
-      array.append(pokemon)
+def term_verifyer(pokemon:dict, term:str, array:list):
+  if pokemon['name'].find(term) != -1 or pokemon['id'].find(term) != -1:
+    array.append(pokemon)
 
 
 def get_pokemon_specie(url_specie:str) -> dict:
@@ -42,16 +41,15 @@ def get_pokemon_specie(url_specie:str) -> dict:
   specie = response.json()
   return specie
 
-def get_pokemon_description(array:list) -> str:
-  for item in array:
-    if item['language']['name'] == 'en':
-      description = item['flavor_text']
+def get_pokemon_description(list_of_descriptions:list) -> str:
+  for description in list_of_descriptions:
+    if description['language']['name'] == 'en':
+      pokemon_description = description['flavor_text']
       break
-
-  description = description.replace('\n', ' ')
-  description = description.replace('\f', ' ')
-  description = description.replace('POKéMON', 'pokemon') 
-  return description
+  pokemon_description = pokemon_description.replace('\n', ' ')
+  pokemon_description = pokemon_description.replace('\f', ' ')
+  pokemon_description = pokemon_description.replace('POKéMON', 'pokemon') 
+  return pokemon_description
 
 def get_pokemon_habitat(specie:dict) -> str:
   habitat = 'Uninformed' if not specie['habitat'] else specie['habitat']['name'].capitalize()
@@ -80,14 +78,9 @@ def get_pokemon_type(url_type:str) -> dict:
   type['list_strenghts'] = list_strenghts
 
   return type
-
-
+  
 
 def get_pokemon_weakness_or_strenghts(list:list) -> list:
-  list_items = []
-
-  for item in list:
-    list_items.append(item['name'])
-   
+  list_items = [item['name'] for item in list]   
   return list_items
   

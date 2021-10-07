@@ -3,57 +3,57 @@ from django.core.paginator import Paginator
 from .utils import *
 
 class HomeView(TemplateView):
-    template_name = "pokedexApp/index.html"
+  template_name = "pokedexApp/index.html"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        pokemonsList = get_all_pokemons(898)
-        paginate_by = 12
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    pokemonsList = get_all_pokemons(898)
+    paginate_by = 12
 
-        paginator = Paginator(pokemonsList, paginate_by)
-        page = self.request.GET.get('page')
-        pokemonsList = paginator.get_page(page)
+    paginator = Paginator(pokemonsList, paginate_by)
+    page = self.request.GET.get('page')
+    pokemonsList = paginator.get_page(page)
 
-        pokemons = [get_pokemon(pokemon['url']) for pokemon in pokemonsList]
+    pokemons = [get_pokemon(pokemon['url']) for pokemon in pokemonsList]
 
-        context['pokemonsList'] = pokemonsList
-        context['pokemons'] = pokemons
-        return context
+    context['pokemonsList'] = pokemonsList
+    context['pokemons'] = pokemons
+    return context
 
 
 
 
 class PokemonView(TemplateView):
-    template_name = 'pokedexApp/pokemon.html'
+  template_name = 'pokedexApp/pokemon.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        pokemonID = self.request.GET.get('pokemonID')  
-        pokemon = get_pokemon(f"https://pokeapi.co/api/v2/pokemon/{pokemonID}")
-        specie = get_pokemon_specie(pokemon['species']['url'])
-        weakness_list = []
-        strenghts_list = []
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    pokemonID = self.request.GET.get('pokemon')  
+    pokemon = get_pokemon(f"https://pokeapi.co/api/v2/pokemon/{pokemonID}")
+    specie = get_pokemon_specie(pokemon['species']['url'])
+    weakness_list = []
+    strenghts_list = []
 
-        for types in pokemon['types']:
-          url = types['type']['url']
-          type = get_pokemon_type(url)          
-          weakness_list.append(type['list_weakness'])
-          strenghts_list.append(type['list_strenghts'])
+    for types in pokemon['types']:
+      url = types['type']['url']
+      type = get_pokemon_type(url)          
+      weakness_list.append(type['list_weakness'])
+      strenghts_list.append(type['list_strenghts'])
 
 
-        description_list = specie['flavor_text_entries']
-        description_formated = get_pokemon_description(description_list)
-        pokemon['description'] = description_formated
-        pokemon['habitat'] = get_pokemon_habitat(specie)
-        pokemon['growth_rate'] = get_pokemon_growth_rate(specie)
-        pokemon['shape'] = get_pokemon_shape(specie)
-        pokemon['weakness_list'] = weakness_list
-        pokemon['strenghts_list'] = strenghts_list
+    description_list = specie['flavor_text_entries']
+    description_formated = get_pokemon_description(description_list)
+    pokemon['description'] = description_formated
+    pokemon['habitat'] = get_pokemon_habitat(specie)
+    pokemon['growth_rate'] = get_pokemon_growth_rate(specie)
+    pokemon['shape'] = get_pokemon_shape(specie)
+    pokemon['weakness_list'] = weakness_list
+    pokemon['strenghts_list'] = strenghts_list
 
-        context['pokemonID'] = pokemonID      
-        context['pokemon'] = pokemon
-        context['specie'] = specie
-        return context
+    context['pokemonID'] = pokemonID      
+    context['pokemon'] = pokemon
+    context['specie'] = specie
+    return context
 
 
 
@@ -68,7 +68,7 @@ class BuscaView(TemplateView):
         allPokemons = get_all_pokemons(898)
         pokemonsList = []
         for pokemon in allPokemons:
-          termo_verify(pokemon, termo, pokemonsList)
+          term_verifyer(pokemon, termo, pokemonsList)
 
 
         paginator = Paginator(pokemonsList, paginated_by)

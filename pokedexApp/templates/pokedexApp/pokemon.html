@@ -1,17 +1,10 @@
-{% load static %}
+{% extends 'base.html' %}
 
-<!doctype html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link rel="stylesheet" href="{% static 'css/pokemon_info.css' %}">
-    <title>{{ pokemon.name|title }}</title>
-</head>
-<body>
+{% block title %} 
+  <title>{{ pokemon.name|title }} | My Pokemon!</title> 
+{% endblock %}
+
+{% block container %}
 
   <div class="container">
 
@@ -33,7 +26,7 @@
         <div>                        
           <img class="pokemon-image" src="{{ pokemon.img }}" alt="{{ pokemon.name }}">
         </div>
-  
+
         <div>
           <h1 class="pokemon-title">{{ pokemon.name|title }}</h1>
           <p class="pokemon-description"> {{ pokemon.description }}</p>
@@ -137,9 +130,10 @@
       <a class="btn" href="/">Voltar</a>
 
                 
-    </div> <!-- Fim Pokemon Container -->
-    
+    </div> <!-- Fim Pokemon Container -->    
 
-  </div>
-</body>
-</html>
+  </div> <!-- Fim Container Geral -->    
+
+{% endblock %}
+  
+  
