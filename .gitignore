@@ -4,3 +4,4 @@ db.sqlite3
 pokedexApp/__pycache__/
 pokedexApp/migrations/
 core/__pycache__/
+__pycache__/
