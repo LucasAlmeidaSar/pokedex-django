@@ -15,9 +15,9 @@ def get_pokemon(url_pokemon : str) -> dict:
 
 
 
-def get_all_pokemons(amount_pokemons : int) -> list:
+def get_all_pokemons(amount_pokemons:int) -> list:
     contador = 0
-    limit = amount_pokemons
+    limit = amount_pokemons if amount_pokemons <= 898 else 898
     url = f"https://pokeapi.co/api/v2/pokemon/?limit={limit}"
     response = requests.get(url)
     jsonObject = response.json()
@@ -66,8 +66,8 @@ def get_pokemon_shape(specie:dict) -> str:
   return shape
 
 
-def get_pokemon_type(url:str) -> dict:
-  response = requests.get(url)
+def get_pokemon_type(url_type:str) -> dict:
+  response = requests.get(url_type)
   type = response.json()
 
   weakness = type['damage_relations']['double_damage_from'] 
