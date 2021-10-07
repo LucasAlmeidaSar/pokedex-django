@@ -28,7 +28,7 @@ class PokemonView(TemplateView):
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
-    pokemonID = self.request.GET.get('pokemon')  
+    pokemonID = self.request.GET.get('pokemonID')  
     pokemon = get_pokemon(f"https://pokeapi.co/api/v2/pokemon/{pokemonID}")
     specie = get_pokemon_specie(pokemon['species']['url'])
     weakness_list = []
@@ -40,6 +40,15 @@ class PokemonView(TemplateView):
       weakness_list.append(type['list_weakness'])
       strenghts_list.append(type['list_strenghts'])
 
+    pokemon_evolutions = get_pokemon_evolutions(specie)
+    evolution_one = pokemon_evolutions['evolution_one']
+
+    if pokemon_evolutions['evolves']:
+      context['pokemon_evolution_two'] = pokemon_evolutions['evolution_two']      
+      if pokemon_evolutions['more_than_two_evolutions']:
+        context['pokemon_evolution_three'] = pokemon_evolutions['evolution_three']
+
+
 
     description_list = specie['flavor_text_entries']
     description_formated = get_pokemon_description(description_list)
@@ -49,6 +58,9 @@ class PokemonView(TemplateView):
     pokemon['shape'] = get_pokemon_shape(specie)
     pokemon['weakness_list'] = weakness_list
     pokemon['strenghts_list'] = strenghts_list
+    context['pokemon_evolution_one'] = evolution_one
+    context['pokemon_evolves'] = pokemon_evolutions['evolves']
+    context['evolves_three_times'] = pokemon_evolutions['more_than_two_evolutions']
 
     context['pokemonID'] = pokemonID      
     context['pokemon'] = pokemon

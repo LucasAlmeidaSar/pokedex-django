@@ -84,16 +84,32 @@ td, th {
   text-align: center;
 }
 
-/* tr:nth-child(even) , th{
-  background-color: #058BD6;
-} */
 
 .pokemon-evolutions{
   justify-content: space-around;
 }
 
+.pokemon-title-not-evolve{
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.pokemon-evolutions-card{
+  background: rgba(0, 0, 0, .2);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 5px black;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.pokemon-evolutions-card:hover{  
+  background: rgba(255,255,255, .05);
+}
+
 .pokemon-evolutions-title{
-  margin-top: 30px;
+  margin: 50px;
+  color: aqua;
 }
 
 .pokemon-evolutions-image{
@@ -102,9 +118,10 @@ td, th {
 }
 
 .pokemon-evolutions-info{
+  color: white;
   font-size: 1rem;
   text-align: center;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .pokemon-evolutions-list{
@@ -116,4 +133,18 @@ td, th {
   padding: 5px 20px;
   margin-right: 10px;
   border-radius: 10px;
+}
+
+.next-evolution-arrow{
+  color: aqua;
+  align-self: center;
+  font-size: 3rem;
+}
+
+.btn-return{
+  display: block;
+  margin: 100px auto 50px;
+  padding: 10px;
+  text-align: center;
+  width: 150px;
 }

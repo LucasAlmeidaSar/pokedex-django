@@ -3,3 +3,7 @@
 {% block title %}
 <title>My Pokemon!</title>
 {% endblock %}
+
+{% block pokemons_found %}
+  <p class="results-found">{{pokemonsList.paginator.count}} pokemons found.</p>
+{% endblock %}

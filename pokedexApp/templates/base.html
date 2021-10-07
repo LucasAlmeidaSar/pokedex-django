@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/pokemon_info.css' %}">  
     <link rel="shortcut icon" href="{% static 'img/pokeball.ico' %}">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css' 
+      integrity='sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==' 
+      crossorigin='anonymous'/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" 
@@ -22,7 +25,7 @@
 
 <body>
 
-  {% block container %}
+  
   <div class="container">
 
     <form action="{% url 'pg_busca' %}">
@@ -33,16 +36,17 @@
                 name="termo"
                 value="{{ request.GET.termo }}"
                 placeholder="Type pokemon's name or number"
-                autofocus/>
-        <p class="results-found">{{pokemonsList.paginator.count}} pokemons found.</p>
+                autofocus
+                autocomplete="off"/>
+        {% block pokemons_found %} {% endblock %}
       </div>
     </form>
 
-
+    {% block container %}
     <ul class="pokemons-grid">
       {% if pokemons %}
         {% for pokemon in pokemons %}
-        <a href="{% url 'pg_pokemon' %}?pokemon={{pokemon.name}}"> 
+        <a href="{% url 'pg_pokemon' %}?pokemonID={{pokemon.id}}"> 
           <li class="card {{ pokemon.types.0.type.name }}">        
             <p class="card-number">N° {{ pokemon.id }}</p>              
             <img class="card-image" src="{{ pokemon.img }}" alt="{{ pokemon.name }}">
@@ -82,8 +86,9 @@
     </div>
    {% endif %}
 
+   {% endblock %}
   </div>
-  {% endblock %}
+
 
 </body>
 </html>

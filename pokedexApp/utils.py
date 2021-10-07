@@ -3,14 +3,20 @@ import requests
 def get_pokemon(url_pokemon : str) -> dict:
   response = requests.get(url_pokemon)
   pokemon = response.json()
+  specie = get_pokemon_specie(pokemon['species']['url'])
+  name = specie['name']
   img = f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{pokemon['id']}.png"
-  pokemon['img'] = img
+  
   types = [types['type']['name'].capitalize() for types in pokemon['types']]
-  pokemon['types_string'] = ' | '.join(types)
+  
   height = pokemon['height'] / 10
   weight = pokemon['weight'] / 10
+  
+  pokemon['types_string'] = ' | '.join(types)
   pokemon['height_mts'] = height
   pokemon['weight_kg'] = weight
+  pokemon['img'] = img
+  pokemon['name'] = name.capitalize()
   return pokemon
 
 
@@ -83,4 +89,39 @@ def get_pokemon_type(url_type:str) -> dict:
 def get_pokemon_weakness_or_strenghts(list:list) -> list:
   list_items = [item['name'] for item in list]   
   return list_items
+  
+
+def get_pokemon_evolutions(specie:dict ) -> dict:
+  evolutions_pokemon = {}
+  url_pokemon = 'https://pokeapi.co/api/v2/pokemon/'
+  response = requests.get(specie['evolution_chain']['url'])
+  evolutions = response.json()
+
+  evolution_one = get_pokemon_specie(evolutions['chain']['species']['url'])
+  evolutions_pokemon['evolution_one'] = get_pokemon(f"{url_pokemon}{evolution_one['id']}")
+  evolutions_pokemon['more_than_two_evolutions'] = False
+
+  pokemon_evolves = True if len(evolutions['chain']['evolves_to']) > 0 else False
+
+  if pokemon_evolves:
+    more_than_two_evolutions = True if len(evolutions['chain']['evolves_to'][0]['evolves_to']) > 0 else False
+
+    evolution_two = get_pokemon_specie(evolutions['chain']['evolves_to'][0]['species']['url'])
+    evolutions_pokemon['evolves'] = True    
+    evolutions_pokemon['evolution_two'] = get_pokemon(f"{url_pokemon}{evolution_two['id']}")
+
+    if more_than_two_evolutions:
+      evolutions_pokemon['more_than_two_evolutions'] = True
+      evolution_three = get_pokemon_specie(evolutions['chain']['evolves_to'][0]['evolves_to'][0]['species']['url'])
+      evolutions_pokemon['evolution_three'] = get_pokemon(f"{url_pokemon}{evolution_three['id']}")
+    
+  else:
+    evolutions_pokemon['evolves'] = False
+
+  return evolutions_pokemon
+
+
+ 
+
+
   

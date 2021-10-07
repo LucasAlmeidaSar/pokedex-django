@@ -4,135 +4,158 @@
   <title>{{ pokemon.name|title }} | My Pokemon!</title> 
 {% endblock %}
 
-{% block container %}
+{% block container %}    
+  <div class="pokemon-container">      
 
-  <div class="container">
-
-    <form action="{% url 'pg_busca' %}">
-      <div class="filter-container">
-        <input type="search"
-                class="filter"
-                id="form-busca"
-                name="termo"
-                value="{{ request.GET.termo }}"
-                placeholder="Type pokemon's name or number"
-                autofocus/>
+    <div class="flex">
+      <div>                        
+        <img class="pokemon-image" src="{{ pokemon.img }}" alt="{{ pokemon.name }}">
       </div>
-    </form>    
-    
-    <div class="pokemon-container">      
 
-      <div class="flex">
-        <div>                        
-          <img class="pokemon-image" src="{{ pokemon.img }}" alt="{{ pokemon.name }}">
-        </div>
-
-        <div>
-          <h1 class="pokemon-title">{{ pokemon.name|title }}</h1>
-          <p class="pokemon-description"> {{ pokemon.description }}</p>
-          <div class="pokemon-container-info">
-            <p> <b>Height:</b> <br> {{ pokemon.height_mts }} m</p>
-            <p> <b>Growth rate:</b> <br> {{ pokemon.growth_rate }} </p>
-            <p> <b>Weight:</b> <br> {{ pokemon.weight_kg}} kg</p>
-            <p> <b>Shape:</b> <br> {{ pokemon.shape }} </p>
-            <p> <b>Habitat:</b> <br> {{ pokemon.habitat }}</p>
-            
-            <ul>
-              <b>Abilities:</b>
-              {% for abilities in pokemon.abilities %}
-                <li>{{ abilities.ability.name|title }}</li>
-              {% endfor %}
-            </ul>
-          </div>
-
-
-          <table>
-            <thead>
-              <tr>
-                {% for stats in pokemon.stats%}
-                  <th class="{{ pokemon.types.0.type.name }}">{{ stats.stat.name|title }}</th>
-                {% endfor %}                  
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                {% for stats in pokemon.stats%}
-                  <td>{{ stats.base_stat }}</td>
-                {% endfor %}                
-              </tr>
-            </tbody>
-          </table>
-
-          <h2 class="pokemon-subtitle">Types</h2>
-          <ul class="pokemon-list flex">
-            {% for types in pokemon.types%}
-              <li class="pokemon-list-item {{ types.type.name }}">{{ types.type.name|title }}</li>
-            {% endfor %}
-          </ul>
+      <div>
+        <h1 class="pokemon-title">{{ pokemon.name|title }}</h1>
+        <p class="pokemon-description"> {{ pokemon.description }}</p>
+        <div class="pokemon-container-info">
+          <p> <b>Height:</b> <br> {{ pokemon.height_mts }} m</p>
+          <p> <b>Growth rate:</b> <br> {{ pokemon.growth_rate }} </p>
+          <p> <b>Weight:</b> <br> {{ pokemon.weight_kg}} kg</p>
+          <p> <b>Shape:</b> <br> {{ pokemon.shape }} </p>
+          <p> <b>Habitat:</b> <br> {{ pokemon.habitat }}</p>
           
-        </div>
-      </div>
-
-      <div class="flex weak-strength-container">
-        <div>
-          <h2 class="pokemon-subtitle"> Weakness</h2>
-          <ul class="pokemon-list flex">
-            {% for weakness in pokemon.weakness_list %}
-              {% for item in weakness %}
-                <li class="pokemon-list-item {{item}}">{{item}}</li>
-              {% endfor %}
+          <ul>
+            <b>Abilities:</b>
+            {% for abilities in pokemon.abilities %}
+              <li>{{ abilities.ability.name|title }}</li>
             {% endfor %}
           </ul>
         </div>
-        <div>
-          <h2 class="pokemon-subtitle"> Strengths</h2>
-          <ul class="pokemon-list flex">
-            {% for strenght in pokemon.strenghts_list %}
-              {% for item in strenght %}
-                <li class="pokemon-list-item {{item}}">{{item}}</li>
-              {% endfor %}
+
+
+        <table>
+          <thead>
+            <tr>
+              {% for stats in pokemon.stats%}
+                <th class="{{ pokemon.types.0.type.name }}">{{ stats.stat.name|title }}</th>
+              {% endfor %}                  
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              {% for stats in pokemon.stats%}
+                <td>{{ stats.base_stat }}</td>
+              {% endfor %}                
+            </tr>
+          </tbody>
+        </table>
+
+        <h2 class="pokemon-subtitle">Types</h2>
+        <ul class="pokemon-list flex">
+          {% for types in pokemon.types%}
+            <li class="pokemon-list-item {{ types.type.name }}">{{ types.type.name|title }}</li>
+          {% endfor %}
+        </ul>
+        
+      </div>
+    </div>
+
+    <div class="flex weak-strength-container">
+      <div>
+        <h2 class="pokemon-subtitle"> Weakness</h2>
+        <ul class="pokemon-list flex">
+          {% for weakness in pokemon.weakness_list %}
+            {% for item in weakness %}
+              <li class="pokemon-list-item {{item}}">{{item}}</li>
             {% endfor %}
-          </ul>
-        </div>
+          {% endfor %}
+        </ul>
       </div>
-
-
-      <h2 class="pokemon-title pokemon-evolutions-title">Evolutions</h2>
-      <div class="pokemon-evolutions flex">
-        <div class="pokemon-evolutions-card">
-          <img class="pokemon-evolutions-image" src="{{ pokemon.img }}" alt="">
-          <h1 class="pokemon-evolutions-info">N° {{ pokemon.id }} {{ pokemon.name }}</h1>  
-          <ul class="pokemon-evolutions-list flex">
-            <li class="pokemon-evolutions-list-item fire">Fire</li>
-            <li class="pokemon-evolutions-list-item water">Water</li>
-          </ul>  
-        </div>
-
-        <div class="pokemon-evolutions-card">
-          <img class="pokemon-evolutions-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png" alt="">
-          <h1 class="pokemon-evolutions-info">N° 2 {{ pokemon.name }}</h1>  
-          <ul class="pokemon-evolutions-list flex">
-            <li class="pokemon-evolutions-list-item fire">Fire</li>
-            <li class="pokemon-evolutions-list-item water">Water</li>
-          </ul>  
-        </div>
-
-        <div class="pokemon-evolutions-card">
-          <img class="pokemon-evolutions-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png" alt="">
-          <h1 class="pokemon-evolutions-info">N° 3 {{ pokemon.name }}</h1>  
-          <ul class="pokemon-evolutions-list flex">
-            <li class="pokemon-evolutions-list-item fire">Fire</li>
-            <li class="pokemon-evolutions-list-item water">Water</li>
-          </ul>  
-        </div>
+      <div>
+        <h2 class="pokemon-subtitle"> Strengths</h2>
+        <ul class="pokemon-list flex">
+          {% for strenght in pokemon.strenghts_list %}
+            {% for item in strenght %}
+              <li class="pokemon-list-item {{item}}">{{item}}</li>
+            {% endfor %}
+          {% endfor %}
+        </ul>
       </div>
+    </div>
 
-      <a class="btn" href="/">Voltar</a>
 
-                
-    </div> <!-- Fim Pokemon Container -->    
+    <!-- Evolutions Section -->
 
-  </div> <!-- Fim Container Geral -->    
+    <h2 class="pokemon-title pokemon-evolutions-title">Evolutions</h2>
+
+    {% if not pokemon_evolves %}
+        <h3 class="pokemon-title-not-evolve">This Pokemon does not evolve.<h3>
+    {% endif %}
+    
+    <div class="pokemon-evolutions flex">   
+      
+      <a href="{% url 'pg_pokemon' %}?pokemonID={{pokemon_evolution_one.id}}">
+        <div class="pokemon-evolutions-card">          
+          <img class="pokemon-evolutions-image" 
+              src="{{ pokemon_evolution_one.img }}" 
+              alt="{{pokemon_evolution_one.name}}">
+          <h1 class="pokemon-evolutions-info">
+            N° {{ pokemon_evolution_one.id }} - {{ pokemon_evolution_one.name|title }}
+          </h1>            
+          <ul class="pokemon-evolutions-list flex">
+            {% for types in pokemon_evolution_one.types %}
+              <li class="pokemon-evolutions-list-item {{types.type.name}}">{{types.type.name|title}}</li>
+            {% endfor %}
+          </ul>  
+        </div>
+      </a>
+
+      {% if pokemon_evolves %}
+        <span class="next-evolution-arrow"> <i class="fas fa-arrow-circle-right"></i> </span>
+        <a href="{% url 'pg_pokemon' %}?pokemonID={{pokemon_evolution_two.id}}">
+          <div class="pokemon-evolutions-card">
+            <img class="pokemon-evolutions-image" 
+                src="{{ pokemon_evolution_two.img }}" 
+                alt="{{pokemon_evolution_two.name}}">
+            <h1 class="pokemon-evolutions-info">
+              N° {{ pokemon_evolution_two.id }} {{ pokemon_evolution_two.name }}
+            </h1>  
+            <ul class="pokemon-evolutions-list flex">
+              {% for types in pokemon_evolution_two.types %}
+                <li class="pokemon-evolutions-list-item {{types.type.name}}">{{types.type.name|title}}</li>
+              {% endfor %}
+            </ul>  
+          </div>
+        </a>
+      {%  endif %}
+
+      {% if evolves_three_times %}
+      <span class="next-evolution-arrow"> <i class="fas fa-arrow-circle-right"></i> </span>
+      <a href="{% url 'pg_pokemon' %}?pokemonID={{pokemon_evolution_three.id}}"> 
+        <div class="pokemon-evolutions-card">
+          <img class="pokemon-evolutions-image" 
+          src="{{ pokemon_evolution_three.img }}" 
+          alt="{{pokemon_evolution_three.name}}">
+          <h1 class="pokemon-evolutions-info">
+            N° {{ pokemon_evolution_three.id }} {{ pokemon_evolution_three.name }}
+          </h1>  
+          <ul class="pokemon-evolutions-list flex">
+            {% for types in pokemon_evolution_three.types %}
+              <li class="pokemon-evolutions-list-item {{types.type.name}}">{{types.type.name|title}}</li>
+            {% endfor %}
+          </ul>  
+        </div>
+      </a>
+      {% endif %}
+
+    </div>
+
+    
+    <a class="btn btn-return" href="/">Voltar</a>
+    
+
+              
+  </div> <!-- Fim Pokemon Container -->    
+
+  
 
 {% endblock %}
   
