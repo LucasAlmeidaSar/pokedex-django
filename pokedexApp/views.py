@@ -4,7 +4,7 @@ from .utils import *
 import requests
 
 class HomeView(TemplateView):
-    template_name = "myPokedex/index.html"
+    template_name = "pokedexApp/index.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -25,7 +25,7 @@ class HomeView(TemplateView):
 
 
 class PokemonView(TemplateView):
-    template_name = 'myPokedex/pokemon.html'
+    template_name = 'pokedexApp/pokemon.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -61,7 +61,7 @@ class PokemonView(TemplateView):
 
 
 class BuscaView(TemplateView):
-    template_name = 'myPokedex/pokemon_busca.html'
+    template_name = 'pokedexApp/pokemon_busca.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

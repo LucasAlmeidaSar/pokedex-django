@@ -1,1 +1,6 @@
 venv/
+staticfiles/
+db.sqlite3
+pokedexApp/__pycache__/
+pokedexApp/migrations/
+core/__pycache__/
