@@ -1,13 +1,13 @@
-def getPokemon(url):
+def getPokemon(url_pokemon):
   pass
 
-def getAllPokemons(number_of_pokemons):
+def getAllPokemons(amount_pokemons):
   pass
 
-def termo_verify(pokemon, termo, array):
+def term_verify(pokemon, term, array):
   pass
 
-def getPokemonSpecie(url):
+def getPokemonSpecie(url_specie):
   pass
 
 def getPokemonDescription(array):
@@ -22,7 +22,7 @@ def getPokemonGrowthRate(specie):
 def getPokemonShape(specie):
   pass
 
-def getPokemonType(url, item):
+def getPokemonType(url_type, item):
   pass
 
 def getPokemonWeakness(array):
