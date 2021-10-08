@@ -21,6 +21,12 @@ body {
 	font-family: 'Roboto', sans-serif;
 }
 
+h2 {
+	text-align: center;
+	font-size: 2.5rem;
+}
+
+
 a{
   text-decoration: none;
 }
@@ -57,7 +63,7 @@ a{
   padding: 5px 10px;
   font-size: .85rem;
 }
-
+/* 
 .filtred-type{
     color: white;
     font-size: .7rem;
@@ -78,14 +84,14 @@ a{
     letter-spacing: 1px;
 }
 
-.filtred-type-results{  margin: 0 5px;  }
+.filtred-type-results{  margin: 0 5px;  } */
 
-.btnGroup{
+/* .btnGroup{
   position: absolute;
   top: 1px;
   right: 1px;
   bottom: 1px;
-}
+} */
 
 .btn {    
   background-color: #8d56fd;
@@ -99,7 +105,7 @@ a{
 }
 
 .btn:hover{  background-color: #6825ee;  }
-
+/* 
 .loading .search{  display: none;  }
 
 .spinner{  display: none;  }
@@ -119,8 +125,8 @@ a{
     100%{
         transform: rotate(360deg);
     }
-} 
-
+}  */
+/* 
 .btn-to-top{
   position: fixed;
   bottom:10px;
@@ -147,53 +153,8 @@ a{
 .btn-all:hover{  background-color: rgb(243, 203, 59);  }
 .btn-all.inativo:hover{  background-color: rgb(243, 203, 59);  }
 
-.btn-all.inativo{  background-color: #B6C4D1  }
+.btn-all.inativo{  background-color: #B6C4D1  } */
 
-.btn-prev-next{
-  position: relative;
-  width: 200px;
-  height: 50px;
-  margin: auto;
-  background-color: #8E75FF;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  color: white;
-  padding: 0 10px;
-  justify-content: center;
-  user-select: none;
-}
-
-.psychic.btn-prev-next{  color: white;  }
-
-.prev-next-number{  
-    font-weight: bold;
-    margin: 0 5px;  
-}
-
-.prev-next-name{  text-transform: capitalize;  }
-
-.prev-icon,
-.next-icon{
-    font-size: 1.5rem;  
-    position: absolute;
-}
-
-.prev-icon{  
-    left: 10px;  
-    margin-right: 5px;
-}
-
-.next-icon{  
-    right: 10px;  
-    margin-left: 5px;
-}
-
-
-h2 {
-	text-align: center;
-	font-size: 2.5rem;
-}
 
 .pokemons-grid {
 	display: grid;
@@ -225,8 +186,8 @@ h2 {
 .fire .modal-side-bar-item.ativo,
 .modal.fire:hover {
 	background-color: #FF6B6B;
-    color: #222;    
-    transition: all .3s ease;
+  color: #222;    
+  transition: all .3s ease;
 }
 
 .fire:hover{  background-color: #f84848;  }
@@ -236,8 +197,8 @@ h2 {
 .grass .modal-side-bar-item.ativo,
 .modal.grass:hover {
 	background-color: #3DEBB1;
-    color: #222;
-    transition: all .3s ease;
+  color: #222;
+  transition: all .3s ease;
 }
 
 .grass:hover{  background-color: #00e096;  }
@@ -247,8 +208,8 @@ h2 {
 .electric .modal-side-bar-item.ativo,
 .modal.electric:hover {
 	background-color: #fafa3e;
-    color: #222;
-    transition: all .3s ease;
+  color: #222;
+  transition: all .3s ease;
 }
 
 .electric:hover{  background-color: #e2e203;  }
@@ -258,8 +219,8 @@ h2 {
 .water .modal-side-bar-item.ativo,
 .modal.water:hover {
 	background-color: #9CF5ED;
-    color: #222;
-    transition: all .3s ease;
+  color: #222;
+  transition: all .3s ease;
 }
 
 .water:hover{  background-color: #44f5e6;  }
@@ -268,9 +229,9 @@ h2 {
 .ice .modal-side-bar-item:hover,
 .ice .modal-side-bar-item.ativo,
 .modal.ice:hover{
-    background-color: #BEF5ED;
-    color: #222;
-    transition: all .3s ease;
+  background-color: #BEF5ED;
+  color: #222;
+  transition: all .3s ease;
 }
 
 .ice:hover{  background-color: #81f1e1;  }
@@ -280,7 +241,8 @@ h2 {
 .ground .modal-side-bar-item.ativo,
 .modal.ground:hover {
 	background-color: #A78874;
-    transition: all .3s ease;
+  color: #222;
+  transition: all .3s ease;
 }
 
 .ground:hover{  background-color: #a87e63;  }
@@ -290,8 +252,8 @@ h2 {
 .rock .modal-side-bar-item.ativo,
 .modal.rock:hover{
 	background-color: #C5B4D5;
-    color: #222;
-    transition: all .3s ease;
+  color: #222;
+  transition: all .3s ease;
 }
 
 .rock:hover{  background-color: #b590d8;  }
@@ -301,8 +263,8 @@ h2 {
 .fairy .modal-side-bar-item.ativo,
 .modal.fairy:hover{
 	background-color: #FFAFFB;
-    color: #222;
-    transition: all .3s ease;
+  color: #222;
+  transition: all .3s ease;
 }
 
 .fairy:hover{  background-color: #f56fee;  }
@@ -312,8 +274,8 @@ h2 {
 .poison .modal-side-bar-item.ativo,
 .modal.poison:hover{
 	background-color: #6bc747;
-    color: #222;
-    transition: all .3s ease;
+  color: #222;
+  transition: all .3s ease;
 }
 
 .poison:hover{  background-color: #70e741;  }
@@ -323,8 +285,8 @@ h2 {
 .bug .modal-side-bar-item.ativo,
 .modal.bug:hover{
 	background-color: #DEC9B4;
-    color: #222;
-    transition: all .3s ease;
+  color: #222;
+  transition: all .3s ease;
 }
 
 .bug:hover{  background-color: #ddb690;  }
@@ -334,8 +296,8 @@ h2 {
 .dragon .modal-side-bar-item.ativo,
 .modal.dragon:hover {
 	background-color: #F6CD9C;
-    color: #222;
-    transition: all .3s ease;
+  color: #222;
+  transition: all .3s ease;
 }
 
 .dragon:hover{  background-color: #f1b871;  }
@@ -345,8 +307,8 @@ h2 {
 .psychic .modal-side-bar-item.ativo,
 .modal.psychic:hover{
 	background-color: #5b0c77;
-    color: black;
-    transition: all .3s ease;
+  color: black;
+  transition: all .3s ease;
 }
 
 .psychic:hover{  background-color: #6a038f;  }
@@ -356,8 +318,8 @@ h2 {
 .flying .modal-side-bar-item.ativo,
 .modal.flying:hover {
 	background-color: #F5F5F5;
-    color: #222;
-    transition: all .3s ease;
+  color: #222;
+  transition: all .3s ease;
 }
 
 .flying:hover{  background-color: #e4e2e2;  }
@@ -367,8 +329,8 @@ h2 {
 .fighting .modal-side-bar-item.ativo,
 .modal.fighting:hover{
 	background-color: #E6E0D4;
-    color: #222;
-    transition: all .3s ease;
+  color: #222;
+  transition: all .3s ease;
 }
 
 .fighting:hover{  background-color: #e6d4b1;  }
@@ -378,8 +340,8 @@ h2 {
 .normal .modal-side-bar-item.ativo,
 .modal.normal:hover{
 	background-color: #F5F5F5;
-    color: #222;
-    transition: all .3s ease;
+  color: #222;
+  transition: all .3s ease;
 }
 
 .normal:hover{  background-color: #dfdddd;  }
@@ -389,7 +351,8 @@ h2 {
 .ghost .modal-side-bar-item.ativo,
 .modal.ghost:hover {
 	background-color: #4C7397;
-    transition: all .3s ease;
+  color: #222;
+  transition: all .3s ease;
 }
 
 .ghost:hover{  background-color: #2d6fac;  }
@@ -399,7 +362,7 @@ h2 {
 .dark .modal-side-bar-item.ativo,
 .modal.dark:hover {
 	background-color: #0c3a66;
-    transition: all .3s ease;
+  transition: all .3s ease;
 }
 
 .dark:hover{  background-color: #03437e;  }
@@ -423,7 +386,8 @@ h2 {
 
 .card.unique{    
   margin: auto;
-  width: 350px;
+  max-width: 500px;
+  min-width: 300px;
 }
 
 .card::after {

@@ -33,9 +33,9 @@
         <input type="search"
                 class="filter"
                 id="form-busca"
-                name="termo"
-                value="{{ request.GET.termo }}"
-                placeholder="Type pokemon's name or number"
+                name="term"
+                value="{{ request.GET.term }}"
+                placeholder="Look for the Pokémon's name, number or something like that."
                 autofocus
                 autocomplete="off"/>
         {% block pokemons_found %} {% endblock %}
@@ -43,50 +43,70 @@
     </form>
 
     {% block container %}
-    <ul class="pokemons-grid">
-      {% if pokemons %}
-        {% for pokemon in pokemons %}
-        <a href="{% url 'pg_pokemon' %}?pokemonID={{pokemon.id}}"> 
-          <li class="card {{ pokemon.types.0.type.name }}">        
-            <p class="card-number">N° {{ pokemon.id }}</p>              
-            <img class="card-image" src="{{ pokemon.img }}" alt="{{ pokemon.name }}">
-            <h2 class="card-title">{{ pokemon.name }} </h2>
-            <p class="card-subtitle">
-              {{ pokemon.types_string }}
-            </p>  
-          </li>
-        </a> 
-        {% endfor %}
 
-       {% elif not pokemons %}
-        <h1 style="text-align: center; color: white;">Not found</h1>
-       {% endif %}
+      <ul class="pokemons-grid">
+        {% if pokemons %}
 
-    </ul>
-
-
-
-    {% if pokemonsList.paginator.count > 12 %}
-    <div class="pagination">
-      <span class="step-links">
-          {% if pokemonsList.has_previous %}
-              <a class="btn" href="?termo={{request.GET.termo}}&page=1">&laquo;</a>
-              <a class="btn" href="?termo={{request.GET.termo}}&page={{ pokemonsList.previous_page_number }}">&lsaquo;</a>
+          {% if pokemonsList.paginator.count <= 2 %}
+            {% for pokemon in pokemons %}
+            <a href="{% url 'pg_pokemon' %}?pokemonID={{pokemon.id}}"> 
+              <li class="card unique {{ pokemon.types.0.type.name }}">        
+                <p class="card-number">N° {{ pokemon.id }}</p>              
+                <img class="card-image" src="{{ pokemon.img }}" alt="{{ pokemon.name }}">
+                <h2 class="card-title">{{ pokemon.name }} </h2>
+                <p class="card-subtitle">
+                  {{ pokemon.types_string }}
+                </p>  
+              </li>
+            </a> 
+            {% endfor %}
+          {% elif pokemonsList.paginator.count > 2 %}
+            {% for pokemon in pokemons %}
+            <a href="{% url 'pg_pokemon' %}?pokemonID={{pokemon.id}}"> 
+              <li class="card {{ pokemon.types.0.type.name }}">        
+                <p class="card-number">N° {{ pokemon.id }}</p>              
+                <img class="card-image" src="{{ pokemon.img }}" alt="{{ pokemon.name }}">
+                <h2 class="card-title">{{ pokemon.name }} </h2>
+                <p class="card-subtitle">
+                  {{ pokemon.types_string }}
+                </p>  
+              </li>
+            </a> 
+            {% endfor %}
           {% endif %}
+          
 
-          <span class="current">
-              {{ pokemonsList.number }} de {{ pokemonsList.paginator.num_pages }}
-          </span>
+        {% elif not pokemons %}
+          <h1 style="text-align: center; color: white;">Not found</h1>
+        {% endif %}
+      </ul>
 
-          {% if pokemonsList.has_next %}
-              <a class="btn" href="?termo={{request.GET.termo}}&page={{ pokemonsList.next_page_number }}">&rsaquo;</a>
-              <a class="btn" href="?termo={{request.GET.termo}}&page={{ pokemonsList.paginator.num_pages }}">&raquo;</a>
-          {% endif %}
-      </span>
-    </div>
-   {% endif %}
+      {% endblock %}
 
-   {% endblock %}
+
+      {% block pagination %}
+        {% if pokemonsList.paginator.count > 12 %}
+          <div class="pagination">
+            <span class="step-links">
+                {% if pokemonsList.has_previous %}
+                    <a class="btn" href="?page=1">&laquo;</a>
+                    <a class="btn" href="?page={{ pokemonsList.previous_page_number }}">&lsaquo;</a>
+                {% endif %}
+
+                <span class="current">
+                    {{ pokemonsList.number }} de {{ pokemonsList.paginator.num_pages }}
+                </span>
+
+                {% if pokemonsList.has_next %}
+                    <a class="btn" href="?page={{ pokemonsList.next_page_number }}">&rsaquo;</a>
+                    <a class="btn" href="?page={{ pokemonsList.paginator.num_pages }}">&raquo;</a>
+                {% endif %}
+            </span>
+          </div>
+        {% endif %}
+      {% endblock %}
+
+   
   </div>
 
 

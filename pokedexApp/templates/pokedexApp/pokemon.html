@@ -59,23 +59,19 @@
     </div>
 
     <div class="flex weak-strength-container">
-      <div>
+      <div class="weakness-container">
         <h2 class="pokemon-subtitle"> Weakness</h2>
         <ul class="pokemon-list flex">
-          {% for weakness in pokemon.weakness_list %}
-            {% for item in weakness %}
-              <li class="pokemon-list-item {{item}}">{{item}}</li>
-            {% endfor %}
+          {% for weakness in weakness_list %}           
+            <li class="pokemon-list-item {{weakness}}">{{weakness|title}}</li>           
           {% endfor %}
         </ul>
       </div>
-      <div>
+      <div class="strengths-container">
         <h2 class="pokemon-subtitle"> Strengths</h2>
         <ul class="pokemon-list flex">
-          {% for strenght in pokemon.strenghts_list %}
-            {% for item in strenght %}
-              <li class="pokemon-list-item {{item}}">{{item}}</li>
-            {% endfor %}
+          {% for strenght in strenghts_list %}
+            <li class="pokemon-list-item {{strenght}}">{{strenght|title}}</li>
           {% endfor %}
         </ul>
       </div>
@@ -149,7 +145,7 @@
     </div>
 
     
-    <a class="btn btn-return" href="/">Voltar</a>
+    <a class="btn btn-return" href="/">Back to homepage</a>
     
 
               

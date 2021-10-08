@@ -7,3 +7,25 @@
 {% block pokemons_found %}
   <p class="results-found">{{pokemonsList.paginator.count}} pokemons found.</p>
 {% endblock %}
+
+{% block pagination %}
+  {% if pokemonsList.paginator.count > 12 %}
+    <div class="pagination">
+      <span class="step-links">
+          {% if pokemonsList.has_previous %}
+              <a class="btn" href="?term={{request.GET.term}}&page=1">&laquo;</a>
+              <a class="btn" href="?term={{request.GET.term}}&page={{ pokemonsList.previous_page_number }}">&lsaquo;</a>
+          {% endif %}
+
+          <span class="current">
+              {{ pokemonsList.number }} de {{ pokemonsList.paginator.num_pages }}
+          </span>
+
+          {% if pokemonsList.has_next %}
+              <a class="btn" href="?term={{request.GET.term}}&page={{ pokemonsList.next_page_number }}">&rsaquo;</a>
+              <a class="btn" href="?term={{request.GET.term}}&page={{ pokemonsList.paginator.num_pages }}">&raquo;</a>
+          {% endif %}
+      </span>
+    </div>
+  {% endif %}
+{% endblock %}

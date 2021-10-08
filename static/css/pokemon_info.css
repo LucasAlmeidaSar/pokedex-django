@@ -77,6 +77,18 @@ td, th {
   background: #000000b3;
   padding: 20px;
   border-radius: 20px;
+  flex-wrap: wrap;
+  max-width: 1500px;
+  margin: auto;
+  gap: 10px;
+}
+
+.weakness-container{
+  box-sizing: border-box;
+}
+
+.strengths-container{
+
 }
 
 .weak-strength-container .pokemon-subtitle{
@@ -146,5 +158,5 @@ td, th {
   margin: 100px auto 50px;
   padding: 10px;
   text-align: center;
-  width: 150px;
+  width: 170px;
 }
