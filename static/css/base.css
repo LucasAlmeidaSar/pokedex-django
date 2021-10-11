@@ -439,11 +439,6 @@ a{
   margin: 0 10px;
 }
 
-/* Loader spinner */
-.spinner{
-
-}
-
 /* Loader */
 
 .loader-container{
@@ -459,7 +454,7 @@ a{
 
 .loader-container .fa-spinner{  animation: spinnerAnimation 1.5s linear infinite;  }
 
-.loader-container.inativo{  display: none;  }
+.loader-container.inative{  display: none;  }
 
 @keyframes spinnerAnimation{
   0%{
@@ -473,3 +468,53 @@ a{
   }
 } 
 
+/* Pokemon não encontrado */
+.pokemon-not-found{
+  position: relative;
+  width: 300px;
+  margin: 10px auto;
+  height: 40px;
+  background-color: #eea2a7;
+  border-radius: 2px;
+  display: none;
+  place-items: center;
+}
+
+.pokemon-not-found.active{  display: grid;  }
+
+.not-found-message{
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  font-size: .95rem;
+  color: #721C24;
+}
+
+.not-found-close{
+  color: #721C24;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+
+.loader-general{
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-55%,-60%);
+  width: 100%;
+  z-index: 9999;
+}
+
+.loader-general.active{
+  display: block;
+}
+
+svg path,
+svg rect{
+  font-size: 4rem;
+  fill: #bef5ed;
+}

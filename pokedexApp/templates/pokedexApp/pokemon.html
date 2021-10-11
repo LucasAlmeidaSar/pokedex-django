@@ -93,7 +93,8 @@
     
     <div class="pokemon-evolutions flex">   
       
-      <a href="{% url 'pg_pokemon' %}?pokemonID={{pokemon_evolution_one.id}}">
+      <a href="{% url 'pg_pokemon' %}?pokemonID={{pokemon_evolution_one.id}}"
+         onclick="load_pokemon()">
         <div class="pokemon-evolutions-card">          
           <img class="pokemon-evolutions-image" 
               src="{{ pokemon_evolution_one.img }}" 
@@ -111,7 +112,8 @@
 
       {% if pokemon_evolves %}
         <span class="next-evolution-arrow"> <i class="fas fa-arrow-circle-right"></i> </span>
-        <a href="{% url 'pg_pokemon' %}?pokemonID={{pokemon_evolution_two.id}}">
+        <a href="{% url 'pg_pokemon' %}?pokemonID={{pokemon_evolution_two.id}}"
+           onclick="load_pokemon()">
           <div class="pokemon-evolutions-card">
             <img class="pokemon-evolutions-image" 
                 src="{{ pokemon_evolution_two.img }}" 
@@ -130,7 +132,8 @@
 
       {% if evolves_three_times %}
       <span class="next-evolution-arrow"> <i class="fas fa-arrow-circle-right"></i> </span>
-      <a href="{% url 'pg_pokemon' %}?pokemonID={{pokemon_evolution_three.id}}"> 
+      <a href="{% url 'pg_pokemon' %}?pokemonID={{pokemon_evolution_three.id}}"
+         onclick="load_pokemon()"> 
         <div class="pokemon-evolutions-card">
           <img class="pokemon-evolutions-image" 
           src="{{ pokemon_evolution_three.img }}" 
