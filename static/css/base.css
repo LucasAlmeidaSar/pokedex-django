@@ -91,21 +91,15 @@ a{
 
 
 /* CORES DOS TIPOS DE POKEMON */
-.steel,
-.steel .modal-side-bar-item:hover,
-.steel .modal-side-bar-item.ativo,
-.modal.steel:hover{
-    background-color: #f4f4f4;
-    color: #222;
-    transition: all .3s ease;
+.steel{
+  background-color: #f4f4f4;
+  color: #222;
+  transition: all .3s ease;
 }
 
 .steel:hover{  background-color: #e9e6e6;  }
 
-.fire,
-.fire .modal-side-bar-item:hover,
-.fire .modal-side-bar-item.ativo,
-.modal.fire:hover {
+.fire {
 	background-color: #FF6B6B;
   color: #222;    
   transition: all .3s ease;
@@ -113,10 +107,7 @@ a{
 
 .fire:hover{  background-color: #f84848;  }
 
-.grass,
-.grass .modal-side-bar-item:hover,
-.grass .modal-side-bar-item.ativo,
-.modal.grass:hover {
+.grass {
 	background-color: #3DEBB1;
   color: #222;
   transition: all .3s ease;
@@ -124,10 +115,7 @@ a{
 
 .grass:hover{  background-color: #00e096;  }
 
-.electric,
-.electric .modal-side-bar-item:hover,
-.electric .modal-side-bar-item.ativo,
-.modal.electric:hover {
+.electric {
 	background-color: #fafa3e;
   color: #222;
   transition: all .3s ease;
@@ -135,10 +123,7 @@ a{
 
 .electric:hover{  background-color: #e2e203;  }
 
-.water,
-.water .modal-side-bar-item:hover,
-.water .modal-side-bar-item.ativo,
-.modal.water:hover {
+.water {
 	background-color: #9CF5ED;
   color: #222;
   transition: all .3s ease;
@@ -146,10 +131,7 @@ a{
 
 .water:hover{  background-color: #44f5e6;  }
 
-.ice,
-.ice .modal-side-bar-item:hover,
-.ice .modal-side-bar-item.ativo,
-.modal.ice:hover{
+.ice {
   background-color: #BEF5ED;
   color: #222;
   transition: all .3s ease;
@@ -157,10 +139,7 @@ a{
 
 .ice:hover{  background-color: #81f1e1;  }
 
-.ground,
-.ground .modal-side-bar-item:hover,
-.ground .modal-side-bar-item.ativo,
-.modal.ground:hover {
+.ground {
 	background-color: #A78874;
   color: #222;
   transition: all .3s ease;
@@ -168,10 +147,7 @@ a{
 
 .ground:hover{  background-color: #a87e63;  }
 
-.rock,
-.rock .modal-side-bar-item:hover,
-.rock .modal-side-bar-item.ativo,
-.modal.rock:hover{
+.rock {
 	background-color: #C5B4D5;
   color: #222;
   transition: all .3s ease;
@@ -179,10 +155,7 @@ a{
 
 .rock:hover{  background-color: #b590d8;  }
 
-.fairy ,
-.fairy .modal-side-bar-item:hover,
-.fairy .modal-side-bar-item.ativo,
-.modal.fairy:hover{
+.fairy {
 	background-color: #FFAFFB;
   color: #222;
   transition: all .3s ease;
@@ -190,10 +163,7 @@ a{
 
 .fairy:hover{  background-color: #f56fee;  }
 
-.poison ,
-.poison .modal-side-bar-item:hover,
-.poison .modal-side-bar-item.ativo,
-.modal.poison:hover{
+.poison {
 	background-color: #6bc747;
   color: #222;
   transition: all .3s ease;
@@ -201,10 +171,7 @@ a{
 
 .poison:hover{  background-color: #70e741;  }
 
-.bug ,
-.bug .modal-side-bar-item:hover,
-.bug .modal-side-bar-item.ativo,
-.modal.bug:hover{
+.bug {
 	background-color: #DEC9B4;
   color: #222;
   transition: all .3s ease;
@@ -212,10 +179,7 @@ a{
 
 .bug:hover{  background-color: #ddb690;  }
 
-.dragon,
-.dragon .modal-side-bar-item:hover,
-.dragon .modal-side-bar-item.ativo,
-.modal.dragon:hover {
+.dragon {
 	background-color: #F6CD9C;
   color: #222;
   transition: all .3s ease;
@@ -223,10 +187,7 @@ a{
 
 .dragon:hover{  background-color: #f1b871;  }
 
-.psychic,
-.psychic .modal-side-bar-item:hover,
-.psychic .modal-side-bar-item.ativo,
-.modal.psychic:hover{
+.psychic {
 	background-color: #5b0c77;
   color: black;
   transition: all .3s ease;
@@ -234,10 +195,7 @@ a{
 
 .psychic:hover{  background-color: #6a038f;  }
 
-.flying,
-.flying .modal-side-bar-item:hover,
-.flying .modal-side-bar-item.ativo,
-.modal.flying:hover {
+.flying {
 	background-color: #F5F5F5;
   color: #222;
   transition: all .3s ease;
@@ -245,10 +203,7 @@ a{
 
 .flying:hover{  background-color: #e4e2e2;  }
 
-.fighting ,
-.fighting .modal-side-bar-item:hover,
-.fighting .modal-side-bar-item.ativo,
-.modal.fighting:hover{
+.fighting {
 	background-color: #E6E0D4;
   color: #222;
   transition: all .3s ease;
@@ -256,10 +211,7 @@ a{
 
 .fighting:hover{  background-color: #e6d4b1;  }
 
-.normal ,
-.normal .modal-side-bar-item:hover,
-.normal .modal-side-bar-item.ativo,
-.modal.normal:hover{
+.normal {
 	background-color: #F5F5F5;
   color: #222;
   transition: all .3s ease;
@@ -267,10 +219,7 @@ a{
 
 .normal:hover{  background-color: #dfdddd;  }
 
-.ghost,
-.ghost .modal-side-bar-item:hover,
-.ghost .modal-side-bar-item.ativo,
-.modal.ghost:hover {
+.ghost {
 	background-color: #4C7397;
   color: #222;
   transition: all .3s ease;
@@ -278,11 +227,9 @@ a{
 
 .ghost:hover{  background-color: #2d6fac;  }
 
-.dark,
-.dark .modal-side-bar-item:hover,
-.dark .modal-side-bar-item.ativo,
-.modal.dark:hover {
+.dark {
 	background-color: #0c3a66;
+  color: white;
   transition: all .3s ease;
 }
 
@@ -425,7 +372,8 @@ a{
 }
 
 
-/* Pagination */
+
+/* Paginação */
 .pagination{
   margin: 50px auto;
   text-align: center;

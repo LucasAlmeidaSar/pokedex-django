@@ -83,13 +83,13 @@ td, th {
   gap: 10px;
 }
 
-.weakness-container{
+/* .weakness-container{
   box-sizing: border-box;
 }
 
 .strengths-container{
 
-}
+} */
 
 .weak-strength-container .pokemon-subtitle{
   margin-bottom: 20px;

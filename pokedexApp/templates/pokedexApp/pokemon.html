@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'css/pokemon_info.css' %}">  
+{% endblock %}
 
 {% block title %} 
-  <title>{{ pokemon.name|title }} | My Pokemon!</title> 
+  <title>{{ pokemon.name|title }} | My Pokedex!</title> 
 {% endblock %}
 
 {% block container %}    

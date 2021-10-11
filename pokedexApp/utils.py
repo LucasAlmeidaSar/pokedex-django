@@ -53,9 +53,10 @@ def get_pokemon_description(list_of_descriptions:list) -> str:
     if description['language']['name'] == 'en':
       pokemon_description = description['flavor_text']
       break
+
   pokemon_description = pokemon_description.replace('\n', ' ')
   pokemon_description = pokemon_description.replace('\f', ' ')
-  pokemon_description = pokemon_description.replace('POKéMON', 'pokemon') 
+  pokemon_description = pokemon_description.replace('POKéMON', 'pokemon')   
   return pokemon_description
 
 
@@ -81,7 +82,6 @@ def get_pokemon_type(url_type:str) -> dict:
 
   weakness = type['damage_relations']['double_damage_from'] 
   strenghts = type['damage_relations']['double_damage_to'] 
-
   list_weakness = get_pokemon_weakness_or_strenghts(weakness)
   list_strenghts = get_pokemon_weakness_or_strenghts(strenghts)
 
@@ -136,7 +136,6 @@ def get_pokemon_evolutions(specie:dict ) -> dict:
     
   else:
     evolutions_pokemon['evolves'] = False
-
   return evolutions_pokemon
 
 

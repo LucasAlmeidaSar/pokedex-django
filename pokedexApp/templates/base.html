@@ -11,7 +11,7 @@
     <meta name="author" content="Lucas de Almeida Sarmento">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link rel="stylesheet" href="{% static 'css/pokemon_info.css' %}">  
+    {% block style %}{% endblock %}
     <link rel="shortcut icon" href="{% static 'img/pokeball.ico' %}">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css' 
       integrity='sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==' 
@@ -24,7 +24,6 @@
 </head>
 
 <body>
-
   
   <div class="container">
 
@@ -36,7 +35,6 @@
                 name="term"
                 value="{{ request.GET.term }}"
                 placeholder="Look for the Pokémon's name, number or something like that."
-                autofocus
                 autocomplete="off"/>
         {% block pokemons_found %} {% endblock %}
       </div>

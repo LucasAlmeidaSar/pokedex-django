@@ -72,7 +72,7 @@ class PokemonView(TemplateView):
 
 
 
-class BuscaView(TemplateView):
+class SearchView(TemplateView):
   template_name = 'pokedexApp/pokemon_busca.html'
 
   def get_context_data(self, **kwargs):
