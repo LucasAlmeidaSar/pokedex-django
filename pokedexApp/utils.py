@@ -38,7 +38,7 @@ def get_all_pokemons(amount_pokemons:int) -> list:
 
 
 def term_verifyer(pokemon:dict, term:str, array_accumulator:list):
-  if term in pokemon['name'] or term in pokemon['id']:
+  if term.lower() in pokemon['name'] or term.lower() in pokemon['id']:
     array_accumulator.append(pokemon)
     
 
