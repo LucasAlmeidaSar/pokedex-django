@@ -37,11 +37,27 @@
                 value="{{ request.GET.term }}"
                 placeholder="Look for the Pokémon's name, number or something like that."
                 autocomplete="off"/>
+
+        <div class="btnGroup">
+          <button class="btn btn-search" data-js="btnSearchPokemon" onclick="search_input_load()"> 
+              <i class="search fas fa-search"></i> 
+              <i class="spinner fas fa-spinner"></i>
+          </button>
+          <a href="/" class="btn btn-all" data-js="btnHome" onclick="go_to_home()">
+            <i class="home fas fa-home"></i>
+            <i class="spinner fas fa-spinner"></i>
+          </a> 
+        </div>
+
         {% block pokemons_found %} {% endblock %}
       </div>
     </form>
 
     {% block container %}
+
+      <div class="loader-container inativo" data-js="loader">
+        <i class="fas fa-spinner"></i>
+      </div>
 
       <ul class="pokemons-grid">
         {% if pokemons %}
@@ -88,8 +104,8 @@
           <div class="pagination">
             <span class="step-links">
                 {% if pokemonsList.has_previous %}
-                    <a class="btn" href="?page=1">&laquo;</a>
-                    <a class="btn" href="?page={{ pokemonsList.previous_page_number }}">&lsaquo;</a>
+                    <a class="btn" onclick="load_page()" href="?page=1">&laquo;</a>
+                    <a class="btn" onclick="load_page()" href="?page={{ pokemonsList.previous_page_number }}">&lsaquo;</a>
                 {% endif %}
 
                 <span class="current">
@@ -97,8 +113,8 @@
                 </span>
 
                 {% if pokemonsList.has_next %}
-                    <a class="btn" href="?page={{ pokemonsList.next_page_number }}">&rsaquo;</a>
-                    <a class="btn" href="?page={{ pokemonsList.paginator.num_pages }}">&raquo;</a>
+                    <a class="btn" onclick="load_page()" href="?page={{ pokemonsList.next_page_number }}">&rsaquo;</a>
+                    <a class="btn" onclick="load_page()" href="?page={{ pokemonsList.paginator.num_pages }}">&raquo;</a>
                 {% endif %}
             </span>
           </div>
@@ -109,5 +125,30 @@
   </div>
 
   <script src="{% static 'js/pace.min.js' %}"></script>
+  <script>
+    const main_container = document.querySelector('.container')
+    const loader = document.querySelector('[data-js="loader"]')
+    const btn_search = document.querySelector('[data-js="btnSearchPokemon"]')
+    const btn_home = document.querySelector('[data-js="btnHome"]')
+
+    function load_page(){
+      scrollTo(0,0)      
+      // main_container.style.opacity = '0.5'
+      loader.classList.remove('inativo')
+    }
+
+    function search_input_load(){
+      btn_search.classList.add('active')
+    }
+
+    function go_to_home(){
+      btn_home.classList.add('active')
+    }
+
+    function to_top(){
+      scrollTo(0,0)
+    }
+
+  </script>
 </body>
 </html>

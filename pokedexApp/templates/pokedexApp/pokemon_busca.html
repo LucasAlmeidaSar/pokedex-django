@@ -13,8 +13,8 @@
     <div class="pagination">
       <span class="step-links">
           {% if pokemonsList.has_previous %}
-              <a class="btn" href="?term={{request.GET.term}}&page=1">&laquo;</a>
-              <a class="btn" href="?term={{request.GET.term}}&page={{ pokemonsList.previous_page_number }}">&lsaquo;</a>
+              <a class="btn" onclick="load_page()" href="?term={{request.GET.term}}&page=1">&laquo;</a>
+              <a class="btn" onclick="load_page()" href="?term={{request.GET.term}}&page={{ pokemonsList.previous_page_number }}">&lsaquo;</a>
           {% endif %}
 
           <span class="current">
@@ -22,8 +22,8 @@
           </span>
 
           {% if pokemonsList.has_next %}
-              <a class="btn" href="?term={{request.GET.term}}&page={{ pokemonsList.next_page_number }}">&rsaquo;</a>
-              <a class="btn" href="?term={{request.GET.term}}&page={{ pokemonsList.paginator.num_pages }}">&raquo;</a>
+              <a class="btn" onclick="load_page()" href="?term={{request.GET.term}}&page={{ pokemonsList.next_page_number }}">&rsaquo;</a>
+              <a class="btn" onclick="load_page()" href="?term={{request.GET.term}}&page={{ pokemonsList.paginator.num_pages }}">&raquo;</a>
           {% endif %}
       </span>
     </div>

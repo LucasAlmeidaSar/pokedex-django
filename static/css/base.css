@@ -50,6 +50,7 @@ a{
 
 .filter {
     width: 100%;
+    height: 47px;
     padding: 12px;
     font-size: 16px;
     border: 0;
@@ -58,11 +59,6 @@ a{
     outline: none;
 }
 
-.results-found{
-  color: white;
-  padding: 5px 10px;
-  font-size: .85rem;
-}
 
 .btn {    
   background-color: #8d56fd;
@@ -76,6 +72,66 @@ a{
 }
 
 .btn:hover{  background-color: #6825ee;  }
+
+.btnGroup{
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.btn-search{  
+  display: inline-block;
+  box-sizing: border-box;
+  height: 45px;
+}
+
+.btn-search.active .search,
+.btn-all.active .home{
+  display: none;
+}
+
+.btn-search .spinner,
+.btn-all .spinner{
+  display: none;
+  animation: spinnerAnimation 1.5s linear infinite ;
+}
+
+.btn-search.active .spinner,
+.btn-all.active .spinner{
+  display: block;
+}
+
+.btn-search,
+.btn-all{
+  padding: 13px 30px;
+  background-color: #8d56fd;
+  border-radius: 50px;
+}
+
+.btn-all{  
+  display: inline-block;
+  background-color: #1DD9B5;  
+  box-sizing: border-box;
+  height: 45px;
+  width: 78px;
+}
+
+.btn-all:hover{  background-color: #16ad92;  }
+
+.btn-filter{  background-color: #EFA8B0;  }
+
+.btn-filter:hover{  background-color: #f17b89;  }
+.btn-filter.ativo{  background-color: #f17b89;  }
+
+.results-found{
+  color: white;
+  padding: 5px 10px;
+  font-size: .85rem;
+}
+
 
 .pokemons-grid {
 	display: grid;
@@ -382,3 +438,38 @@ a{
   color: white;
   margin: 0 10px;
 }
+
+/* Loader spinner */
+.spinner{
+
+}
+
+/* Loader */
+
+.loader-container{
+  display: grid;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  place-items: center;
+  margin: auto;
+  font-size: 3rem;
+  color: #7c60e0; 
+}
+
+.loader-container .fa-spinner{  animation: spinnerAnimation 1.5s linear infinite;  }
+
+.loader-container.inativo{  display: none;  }
+
+@keyframes spinnerAnimation{
+  0%{
+      transform: rotate(0deg);
+  }
+  50%{
+      transform: rotate(180deg);
+  }
+  100%{
+      transform: rotate(360deg);
+  }
+} 
+

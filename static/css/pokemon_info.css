@@ -83,14 +83,6 @@ td, th {
   gap: 10px;
 }
 
-/* .weakness-container{
-  box-sizing: border-box;
-}
-
-.strengths-container{
-
-} */
-
 .weak-strength-container .pokemon-subtitle{
   margin-bottom: 20px;
   text-align: center;
@@ -158,5 +150,7 @@ td, th {
   margin: 100px auto 50px;
   padding: 10px;
   text-align: center;
-  width: 170px;
+  width: 50px;
+  border-radius: 50%;
+  height: 50px;
 }
