@@ -12,7 +12,7 @@
 {% block container %}    
   <div class="pokemon-container">      
 
-    <div class="flex">
+    <div class="flex pokemon-details">
       <div>                        
         <img class="pokemon-image" src="{{ pokemon.img }}" alt="{{ pokemon.name }}">
       </div>
@@ -52,6 +52,12 @@
             </tr>
           </tbody>
         </table>
+
+        <div class="pokemon-container-info info-stats">
+          {% for stats in pokemon.stats%}
+            <p> <b>{{ stats.stat.name|title }}: </b>{{ stats.base_stat}}</p>
+          {% endfor %}
+        </div>
 
         <h2 class="pokemon-subtitle">Types</h2>
         <ul class="pokemon-list flex">
@@ -111,7 +117,11 @@
       </a>
 
       {% if pokemon_evolves %}
-        <span class="next-evolution-arrow"> <i class="fas fa-arrow-circle-right"></i> </span>
+        <span class="next-evolution-arrow"> 
+          <i class="fas fa-arrow-circle-right"></i>
+          <i class="fas fa-arrow-circle-down"></i> 
+        </span>
+
         <a href="{% url 'pg_pokemon' %}?pokemonID={{pokemon_evolution_two.id}}"
            onclick="load_pokemon()">
           <div class="pokemon-evolutions-card">
@@ -131,7 +141,11 @@
       {%  endif %}
 
       {% if evolves_three_times %}
-      <span class="next-evolution-arrow"> <i class="fas fa-arrow-circle-right"></i> </span>
+      <span class="next-evolution-arrow">
+         <i class="fas fa-arrow-circle-right"></i> 
+         <i class="fas fa-arrow-circle-down"></i>
+      </span>
+
       <a href="{% url 'pg_pokemon' %}?pokemonID={{pokemon_evolution_three.id}}"
          onclick="load_pokemon()"> 
         <div class="pokemon-evolutions-card">
