@@ -136,10 +136,4 @@ def get_pokemon_evolutions(specie:dict ) -> dict:
     
   else:
     evolutions_pokemon['evolves'] = False
-  return evolutions_pokemon
-
-
- 
-
-
-  
+  return evolutions_pokemon  

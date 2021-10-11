@@ -73,3 +73,33 @@ def test_get_pokemon_type_returns_dict():
 def test_get_pokemon_weakness_or_strenghts_returns_list():
   weakness = get_pokemon_weakness_or_strenghts(weakness_list)
   assert type(weakness) == list
+
+def test_split_lists_in_list_return_list():
+  fake_list = [[1,2,3,4],[10,20,30]]
+  new_list = split_lists_in_list(fake_list)
+  assert type(new_list) == list
+
+def test_split_lists_in_list_returns_unique_list():
+  fake_list = [[1,2,3,4],[10,20,30]]
+  new_list = split_lists_in_list(fake_list)
+  unique_list = []
+  for array in fake_list:
+    for item in array:
+      unique_list.append(item)
+
+  assert new_list == unique_list
+
+def test_remove_duplicates_return_list():
+  list_duplicates = [1,10,10,20,30,30,40,50]
+  list_uniques = remove_duplicates(list_duplicates)
+  assert type(list_uniques) == list
+
+def test_remove_duplicates_return_unique():
+  list_duplicates = [10, 10, 10, 20,30,40,50]
+  list_uniques = list(dict.fromkeys(list_duplicates))
+  list_final = remove_duplicates(list_duplicates)
+  assert list_final == list_uniques
+
+def test_get_pokemon_evolutions_return_dict():
+  specie = get_pokemon_specie(url_specie)
+  assert type(get_pokemon_evolutions(specie)) == dict
