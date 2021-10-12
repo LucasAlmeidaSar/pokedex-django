@@ -1,5 +1,7 @@
 from pathlib import Path
+from typing import cast
 import django_on_heroku
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -12,7 +14,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-pg7sh#^fu2igqunnu)$kx6@#ipw8mxuq8!52la2%+)4nkoh#ex'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Python-decouple - https://pypi.org/project/python-decouple/
+DEBUG = config('DEBUG', cast=bool, default=False)
 
 ALLOWED_HOSTS = []
 
