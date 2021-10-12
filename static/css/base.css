@@ -520,6 +520,41 @@ svg rect{
   fill: #bef5ed;
 }
 
+footer{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin: 10px 0;
+  background: black;
+}
+
+.btn-footer{
+  height: 30px;
+  width: 30px;
+  display: block;
+  border-radius: 50%;
+  padding: 0;
+  margin: 10px;
+}
+
+.list-item-footer{
+  list-style-type: none;
+}
+
+.logo {
+  object-fit: cover;
+  object-position: center;
+  user-select: none;
+  height: 32px;
+  width: 32px;
+}
+
+.fab.fa-github{
+  font-size: 1.9rem;
+  color: #1dd9b5;
+}
 
 /* Responsive */
 
