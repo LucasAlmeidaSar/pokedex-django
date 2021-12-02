@@ -1,5 +1,4 @@
 from django.views.generic.base import TemplateView
-from django.shortcuts import redirect
 from django.core.paginator import Paginator
 from .utils import *
 
@@ -83,7 +82,7 @@ class SearchView(TemplateView):
     allPokemons = get_all_pokemons(898)
     pokemonsList = []
     for pokemon in allPokemons:
-      term_verifyer(pokemon, term, pokemonsList)
+      term_checker(pokemon, term, pokemonsList)
 
 
     paginator = Paginator(pokemonsList, paginated_by)
