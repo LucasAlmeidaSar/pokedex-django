@@ -11,8 +11,7 @@
     <meta name="author" content="Lucas de Almeida Sarmento">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{% static 'css/pace-theme-minimal.css' %}">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    {% block style %}{% endblock %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">    
     <link rel="shortcut icon" href="{% static 'img/pokeball.ico' %}">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css' 
       integrity='sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==' 
@@ -21,6 +20,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" 
       rel="stylesheet">
+
+    {% block style %}{% endblock %}
     {% block title %} {% endblock %}   
 </head>
 
@@ -28,7 +29,7 @@
   
   <div class="container">
 
-    <form action="{% url 'pg_busca' %}">
+    <form action="{% url 'pg_search' %}">
       <div class="filter-container">
         <input type="search"
                 class="filter"
@@ -43,6 +44,9 @@
               <i class="search fas fa-search"></i> 
               <i class="spinner fas fa-spinner"></i>
           </button>
+          <a href="javascript:void(0)" class="btn btn-type" data-js="btnType" onclick="show_hide_types()"> 
+            <i class="fas fa-filter"></i>
+         </a>
           <a href="/" class="btn btn-all" data-js="btnHome" onclick="go_to_home()">
             <i class="home fas fa-home"></i>
             <i class="spinner fas fa-spinner"></i>
@@ -50,41 +54,65 @@
         </div>
 
         {% block pokemons_found %} {% endblock %}
+
       </div>
     </form>
+
+    <div class="container_types inactive" data-js="types_container"> 
+      <p class="title_types">Select a type:</p> 
+      <ul class="types">
+        <a class="bug" href="{% url 'pg_type' %}?id=7" onclick="load_pokemon()">Bug</a>         
+        <a class="dark" href="{% url 'pg_type' %}?id=17" onclick="load_pokemon()">Dark</a>
+        <a class="dragon" href="{% url 'pg_type' %}?id=16" onclick="load_pokemon()">Dragon</a>
+        <a class="electric" href="{% url 'pg_type' %}?id=13" onclick="load_pokemon()">Electric</a>
+        <a class="fairy" href="{% url 'pg_type' %}?id=18" onclick="load_pokemon()">Fairy</a>
+        <a class="fighting" href="{% url 'pg_type' %}?id=2" onclick="load_pokemon()">Fighting</a>
+        <a class="fire" href="{% url 'pg_type' %}?id=10" onclick="load_pokemon()">Fire</a>
+        <a class="flying" href="{% url 'pg_type' %}?id=3" onclick="load_pokemon()">Flying</a>
+        <a class="ghost" href="{% url 'pg_type' %}?id=8" onclick="load_pokemon()">Ghost</a>
+        <a class="grass" href="{% url 'pg_type' %}?id=12" onclick="load_pokemon()">Grass</a>
+        <a class="ground" href="{% url 'pg_type' %}?id=5" onclick="load_pokemon()">Ground</a>
+        <a class="ice" href="{% url 'pg_type' %}?id=15" onclick="load_pokemon()">Ice</a>
+        <a class="normal" href="{% url 'pg_type' %}?id=1" onclick="load_pokemon()">Normal</a>
+        <a class="poison" href="{% url 'pg_type' %}?id=4" onclick="load_pokemon()">Poison</a>
+        <a class="psychic" href="{% url 'pg_type' %}?id=14" onclick="load_pokemon()">Psychic</a>
+        <a class="rock" href="{% url 'pg_type' %}?id=6" onclick="load_pokemon()">Rock</a>
+        <a class="steel" href="{% url 'pg_type' %}?id=9" onclick="load_pokemon()">Steel</a>
+        <a class="water" href="{% url 'pg_type' %}?id=11" onclick="load_pokemon()">Water</a>
+      </ul>
+    </div>
 
     {% block container %}     
 
       <ul class="pokemons-grid">
         {% if pokemons %}
-
           {% if pokemonsList.paginator.count <= 2 %}
             {% for pokemon in pokemons %}
-            <a href="{% url 'pg_pokemon' %}?pokemonID={{pokemon.id}}"
-               onclick="load_pokemon()"> 
-              <li class="card unique {{ pokemon.types.0.type.name }}">        
-                <p class="card-number">N° {{ pokemon.id }}</p>              
-                <img class="card-image" src="{{ pokemon.img }}" alt="{{ pokemon.name }}">
-                <h2 class="card-title">{{ pokemon.name }} </h2>
-                <p class="card-subtitle">
-                  {{ pokemon.types_string }}
-                </p>  
-              </li>
-            </a> 
+              <a href="{% url 'pg_pokemon' %}?pokemonID={{pokemon.id}}"
+                onclick="load_pokemon()"> 
+                <li class="card unique {{ pokemon.types.0.type.name }}">        
+                  <p class="card-number">N° {{ pokemon.id }}</p>              
+                  <img class="card-image" src="{{ pokemon.img }}" alt="{{ pokemon.name }}">
+                  <h2 class="card-title">{{ pokemon.name }} </h2>
+                  <p class="card-subtitle">
+                    {{ pokemon.types_string }}
+                  </p>  
+                </li>
+              </a> 
             {% endfor %}
           {% elif pokemonsList.paginator.count > 2 %}
             {% for pokemon in pokemons %}
-            <a href="{% url 'pg_pokemon' %}?pokemonID={{pokemon.id}}"
-               onclick="load_pokemon()"> 
-              <li class="card {{ pokemon.types.0.type.name }}">        
-                <p class="card-number">N° {{ pokemon.id }}</p>              
-                <img class="card-image" src="{{ pokemon.img }}" alt="{{ pokemon.name }}">
-                <h2 class="card-title">{{ pokemon.name }} </h2>
-                <p class="card-subtitle">
-                  {{ pokemon.types_string }}
-                </p>  
-              </li>
-            </a> 
+              <a href="{% url 'pg_pokemon' %}?pokemonID={{pokemon.id}}"
+                onclick="load_pokemon()"> 
+                <li class="card {{ pokemon.types.0.type.name }}">        
+                  <p class="card-number">N° {{ pokemon.id }}</p>              
+                  <img class="card-image" src="{{ pokemon.img }}" alt="{{ pokemon.name }}">
+                  <h2 class="card-title">{{ pokemon.name }} </h2>
+                  <p class="card-subtitle">
+                    {{ pokemon.types_string }}
+                  </p>  
+                </li>
+              </a> 
             {% endfor %}
           {% endif %}
           
@@ -175,11 +203,14 @@
 
 
   <script src="{% static 'js/pace.min.js' %}"></script>
+
   <script>
     const main_container = document.querySelector('.container')
     const btn_search = document.querySelector('[data-js="btnSearchPokemon"]')
+    const btn_type = document.querySelector('[data-js="btnType"]')
     const btn_home = document.querySelector('[data-js="btnHome"]')
     const loader_general = document.querySelector('.loader-general')
+    const types_container = document.querySelector('[data-js="types_container"]')
 
     function load_page(){ 
       load_pokemon()
@@ -202,6 +233,15 @@
     function load_pokemon(){
       main_container.style.opacity = '0.5'
       loader_general.classList.add('active')
+      setTimeout(() => { 
+        main_container.style.opacity = '1'
+        loader_general.classList.remove('active')
+      }, 5000);
+    }
+
+    function show_hide_types(){
+      btn_type.classList.toggle('active')
+      types_container.classList.toggle('inactive')      
     }
 
   </script>

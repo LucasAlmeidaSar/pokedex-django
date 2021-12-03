@@ -137,3 +137,24 @@ def get_pokemon_evolutions(specie:dict ) -> dict:
   else:
     evolutions_pokemon['evolves'] = False
   return evolutions_pokemon  
+
+
+
+def get_pokemon_by_type(id_type:str) -> dict:
+  if int(id_type) < 1 or int(id_type) > 18:
+    print('************ NÃO EXISTE ESSE TIPO')
+    return
+      
+  url_type = f"https://pokeapi.co/api/v2/type/{id_type}"
+  response = requests.get(url_type)
+  type = response.json()
+  pokemon_list = type['pokemon'] 
+  type_name = type['name']
+
+  context = {
+    'pokemons_list' : pokemon_list,
+    'type_name' : type_name
+  }
+  return context
+  
+

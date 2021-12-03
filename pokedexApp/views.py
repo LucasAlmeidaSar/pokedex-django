@@ -72,7 +72,7 @@ class PokemonView(TemplateView):
 
 
 class SearchView(TemplateView):
-  template_name = 'pokedexApp/pokemon_busca.html'
+  template_name = 'pokedexApp/pokemon_search.html'
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
@@ -94,4 +94,26 @@ class SearchView(TemplateView):
     context['pokemons'] = pokemons
     context['pokemonsList'] = pokemonsList
 
+    return context
+
+class TypeView(TemplateView):
+  template_name = 'pokedexApp/pokemon_search_type.html'
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    type = self.request.GET.get('id')
+    paginated_by = 12
+
+    pokemons_by_type = get_pokemon_by_type(type)
+    pokemons_list = pokemons_by_type['pokemons_list']
+
+    paginator = Paginator(pokemons_list, paginated_by)
+    page = self.request.GET.get('page')
+    pokemons_list = paginator.get_page(page)
+
+    pokemons = [get_pokemon(pokemon['pokemon']['url']) for pokemon in pokemons_list]
+
+    context['type_name'] = pokemons_by_type['type_name']
+    context['pokemons'] = pokemons
+    context['pokemonsList'] = pokemons_list
     return context

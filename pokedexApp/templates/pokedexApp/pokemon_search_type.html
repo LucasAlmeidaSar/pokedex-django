@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>{{type_name|title}} | My Pokedex!</title>
+{% endblock %}
+
+{% block pokemons_found %}
+  <p class="results-found">Type: <b>{{type_name|title}}</b> - Results: <b>{{pokemonsList.paginator.count}}</b>.</p>
+{% endblock %}
+
+{% block pagination %}
+  {% if pokemonsList.paginator.count > 12 %}
+    <div class="pagination">
+      <span class="step-links">
+          {% if pokemonsList.has_previous %}
+              <a class="btn" onclick="load_page()" href="?id={{request.GET.id}}&page=1">&laquo;</a>
+              <a class="btn" onclick="load_page()" href="?id={{request.GET.id}}&page={{ pokemonsList.previous_page_number }}">&lsaquo;</a>
+          {% endif %}
+
+          <span class="current">
+              {{ pokemonsList.number }} de {{ pokemonsList.paginator.num_pages }}
+          </span>
+
+          {% if pokemonsList.has_next %}
+              <a class="btn" onclick="load_page()" href="?id={{request.GET.id}}&page={{ pokemonsList.next_page_number }}">&rsaquo;</a>
+              <a class="btn" onclick="load_page()" href="?id={{request.GET.id}}&page={{ pokemonsList.paginator.num_pages }}">&raquo;</a>
+          {% endif %}
+      </span>
+    </div>
+  {% endif %}
+{% endblock %}
