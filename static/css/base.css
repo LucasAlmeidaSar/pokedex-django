@@ -113,12 +113,12 @@ a{
 }
 
 .btn-type{
-  background-color: #f1b871;
+  background-color: #13ccec;
 }
 
 .btn-type:hover,
 .btn-type.active{
-  background-color: #f3921c;
+  background-color: #0290ee;
 }
 
 .btn-all{  
@@ -595,8 +595,16 @@ footer{
 .types a{
   padding: 5px 10px;
   margin: 2px;
+  text-decoration: none;
   text-align: center;
   border-radius: 10px;
+  color: #222;
+  background-color: #80EBFF;
+  transition: all .3s ease;
+}
+
+.types a:hover{
+  background-color: #0290ee;
 }
 
 .title_types{
