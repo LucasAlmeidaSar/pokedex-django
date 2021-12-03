@@ -36,7 +36,7 @@
                 id="form-busca"
                 name="term"
                 value="{{ request.GET.term }}"
-                placeholder="Search for a Pokémon.."
+                placeholder="Type the pokemon's name or id.."
                 autocomplete="off"/>
 
         <div class="btnGroup">
@@ -45,7 +45,7 @@
               <i class="spinner fas fa-spinner"></i>
           </button>
           <a href="javascript:void(0)" class="btn btn-type" data-js="btnType" onclick="show_hide_types()"> 
-            <i class="fas fa-filter"></i>
+            <i class="type fas fa-filter"></i>
          </a>
           <a href="/" class="btn btn-all" data-js="btnHome" onclick="go_to_home()">
             <i class="home fas fa-home"></i>

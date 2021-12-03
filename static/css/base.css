@@ -634,7 +634,7 @@ footer{
     top: 44px;
     right: 10px;
   }
-  .btn-search, .btn-all {
+  .btn-search, .btn-all, .btn-type {
     display: inline-flex;
     place-items: center;
     width: 50px;
@@ -642,7 +642,8 @@ footer{
     padding: 5px 10px;
   }
   .btn-search .search, .btn-all .home,
-  .btn-search .spinner, .btn-all .spinner{
+  .btn-search .spinner, .btn-all .spinner,
+  .btn-type .type{
     font-size: 12px;
     margin: 0 auto;
   }
