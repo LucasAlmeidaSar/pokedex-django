@@ -614,6 +614,13 @@ footer{
 
 /* Responsive */
 
+@media (max-width:770px){
+  .types{
+    grid-template-columns: repeat(6, 1fr);
+    padding: 5px;
+  }
+}
+
 @media (max-width:600px){
   .container {
     padding: 10px;
@@ -647,6 +654,16 @@ footer{
     font-size: 12px;
     margin: 0 auto;
   }
+
+  .types {    
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .types a {
+    padding: 2px 10px;
+  }
+
+
 
 }
 
